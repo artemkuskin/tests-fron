@@ -1,0 +1,32 @@
+input {
+  width: 150px;
+  height: 30px;
+  border-radius: 10px;
+  border-style: solid;
+  margin: 10px;
+}
+
+.save-button {
+  height: 30px;
+  width: 80px;
+  border-radius: 10px;
+  border-style: solid;
+  background-color: #95d395;
+  border-color: #245c24;
+  cursor: pointer;
+}
+
+.label-input {
+  display: inline-grid;
+}
+
+.container-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.save-button:active {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
