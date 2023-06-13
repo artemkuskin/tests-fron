@@ -37,6 +37,10 @@
   }
 }
 
+.report-img {
+  height: 100px;
+}
+
 .container-tests {
   display: flex;
   margin: 20px;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { userData } from "../store/authSlice";
+import { userData } from "../../store/authSlice";
 import "./Inputs.css";
-import $api from "../http";
-import { luhnAlgorithm } from "../utils";
+import $api from "../../http";
+import { luhnAlgorithm } from "../../utils";
 
 export const Inputs = () => {
   const dispatch = useDispatch();
