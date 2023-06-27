@@ -9,6 +9,7 @@ const initialState = {
   isAuth: false,
   testData: [],
   status: false,
+  isOpen: false,
   // load: false,
   // userFirstName: "",
   // userLastName: "",
@@ -80,9 +81,8 @@ export const authSlice = createSlice({
   name: "main",
   initialState,
   reducers: {
-    changeIsAuth(state, action) {
-      state.isAuth = false;
-      console.log(state.category);
+    changeIsOpen(state, action) {
+      state.isOpen = action.payload;
     },
   },
   extraReducers: (builder) => {

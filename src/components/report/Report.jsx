@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { report } from "../../utils/constants";
+import Modal from "../modal/Modal";
 
-const Report = () => {
+const Report = ({ report, status }) => {
   const [state, setState] = useState(false);
+
   const getReport = () => {
     if (!state) {
       setState(true);
@@ -13,14 +15,7 @@ const Report = () => {
   return (
     <div>
       <button onClick={getReport}>report</button>
-      {state ? (
-        <div>
-          <div>{report.user}</div> <div>{report.start}</div> <div>{report.end}</div> <div>{report.result}</div>
-          <img className="report-img" src={report.sreenshot} alt="" />
-        </div>
-      ) : (
-        ""
-      )}
+      {state ? <Modal report={report} isOpen={state} onClose={getReport} status={status} /> : ""}
     </div>
   );
 };

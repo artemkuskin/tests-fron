@@ -10,12 +10,12 @@ import stopIcon from "./icon/icons8-выключение-системы-40.png";
 import $api from "./http";
 import { Inputs } from "./components/inputs/Inputs";
 import { convertCamelToNormal } from "./utils";
-import { report } from "./utils/constants";
 import Report from "./components/report/Report";
 
 function App() {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
+  const [isAuth, setIsAuth] = useState(false);
 
   const runTestInSharan = (testName) => {
     dispatch(runTest(testName));
@@ -40,7 +40,6 @@ function App() {
         const response = await $api.get("/getTests");
         setData(response.data);
         fetchData();
-        // console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -55,7 +54,6 @@ function App() {
         Refresh
       </button>
       <Inputs />
-
       <div className="main">
         {data.map((elem) => (
           <div key={elem.name} className="container-tests">
@@ -79,8 +77,10 @@ function App() {
                   <img src={wait} alt="" />
                 )}
                 <div className="content">
-                  <div>{convertCamelToNormal(test.name)}</div>
-                  {test.verified ? <Report /> : ""}
+                  <div className="name-test">
+                    <div>{convertCamelToNormal(test.name)}</div>
+                    {test.verified ? <Report report={test.report} status={test.status} /> : ""}
+                  </div>
 
                   <img src={run} onClick={() => runTestInSharan(test.name)} className="button-test" alt="" />
                 </div>
