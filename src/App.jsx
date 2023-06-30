@@ -11,14 +11,16 @@ import $api from "./http";
 import { Inputs } from "./components/inputs/Inputs";
 import { convertCamelToNormal } from "./utils";
 import Report from "./components/report/Report";
+import Login from "./components/googleLogin/GoogleLogin";
 
 function App() {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
+  const [userData, setUserData] = useState({});
 
   const runTestInSharan = (testName) => {
-    dispatch(runTest(testName));
+    dispatch(runTest({ testName, name: userData?.name }));
   };
 
   const refreshTests = () => {
@@ -50,47 +52,67 @@ function App() {
 
   return (
     <div className="App">
-      <button className="refresh" onClick={refreshTests}>
-        Refresh
-      </button>
-      <Inputs />
-      <div className="main">
-        {data.map((elem) => (
-          <div key={elem.name} className="container-tests">
-            <div className="main-test ">
-              {elem.name}
+      {!isAuth ? (
+        <Login setIsAuth={setIsAuth} setUserData={setUserData} />
+      ) : (
+        <>
+          <div className="user-data">
+            <span className="user-name">{userData.name}</span>
+            <img src={userData.picture} className="picture" />
+          </div>
+          <button className="refresh" onClick={refreshTests}>
+            Refresh
+          </button>
+          <Inputs />
+          <div className="main">
+            {data.map((elem) => (
+              <div key={elem.name} className="container-tests">
+                <div className="main-test ">
+                  {elem.name}
 
-              <div className="buttons">
-                <img src={stopIcon} onClick={() => stop(elem.name)} className="stop-button" alt="" />
-                <img src={run} onClick={() => runTestInSharan(elem.name)} className="button-main-test" alt="" />
-              </div>
-            </div>
-            {elem.tests.map((test) => (
-              <div key={test.name} className="test">
-                {test.verified ? (
-                  test.status ? (
-                    <img src={ok} alt="" />
-                  ) : (
-                    <img src={error} alt="" />
-                  )
-                ) : (
-                  <img src={wait} alt="" />
-                )}
-                <div className="content">
-                  <div className="name-test">
-                    <div>{convertCamelToNormal(test.name)}</div>
-                    {test.verified ? <Report report={test.report} status={test.status} /> : ""}
+                  <div className="buttons">
+                    <img src={stopIcon} onClick={() => stop(elem.name)} className="stop-button" alt="" />
+                    <img src={run} onClick={() => runTestInSharan(elem.name)} className="button-main-test" alt="" />
                   </div>
-
-                  <img src={run} onClick={() => runTestInSharan(test.name)} className="button-test" alt="" />
                 </div>
+                {elem.tests.map((test) => (
+                  <div key={test.name} className="test">
+                    {test.verified ? (
+                      test.status ? (
+                        <img src={ok} alt="" />
+                      ) : (
+                        <img src={error} alt="" />
+                      )
+                    ) : (
+                      <img src={wait} alt="" />
+                    )}
+                    <div className="content">
+                      <div className="name-test">
+                        <div>{convertCamelToNormal(test.name)}</div>
+                        {test.verified ? <Report report={test.report} status={test.status} /> : ""}
+                      </div>
+
+                      <img src={run} onClick={() => runTestInSharan(test.name)} className="button-test" alt="" />
+                    </div>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
   );
 }
 
 export default App;
+
+// sudo apt-get update
+// sudo apt-get install postgresql postgresql-contrib
+// sudo service postgresql start
+// sudo -u postgres psql
+// CREATE DATABASE tests;
+// CREATE USER postgres WITH PASSWORD 'p01f01';
+// GRANT ALL PRIVILEGES ON DATABASE soc_chat TO postgres;
+// sudo su - postgres
+// psql -s tests

@@ -17,13 +17,14 @@ const initialState = {
   // userId2: 0,
 };
 
-export const runTest = createAsyncThunk("app/login", async (testName) => {
+export const runTest = createAsyncThunk("app/login", async ({ testName, name }) => {
   try {
-    const response = await RunTestService.runTest(testName);
+    console.log(testName);
+    const response = await RunTestService.runTest(testName, name);
     console.log(response);
     return response.data;
   } catch (e) {
-    console.log(e.response?.data?.message);
+    console.log(e.response?.data);
   }
 });
 

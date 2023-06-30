@@ -1,19 +1,23 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 
-const Login = (setIsAuth) => {
-  const asd = (resp) => {
+const Login = ({ setIsAuth, setUserData }) => {
+  const onSuccess = (resp) => {
     setIsAuth(true);
-    console.log(resp);
+    const credential = jwt_decode(resp.credential);
+    console.log(credential);
+    setUserData(credential);
   };
+
+  const err = (res) => {
+    console.log(res);
+  };
+
+  const clietID = "964139928437-1b507s7ktbs35rsu15osj1tdg3dceecq.apps.googleusercontent.com";
+
   return (
-    <GoogleOAuthProvider>
-      <GoogleLogin
-        onSuccess={asd}
-        onError={() => {
-          console.log("err");
-        }}
-        useOneTap
-      />
+    <GoogleOAuthProvider clientId={clietID}>
+      <GoogleLogin onSuccess={onSuccess} onError={err} useOneTap />
     </GoogleOAuthProvider>
   );
 };

@@ -138,3 +138,18 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.user-data {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: -10;
+}
+
+.picture {
+  border-radius: 50%;
+  height: 50px;
+  margin: 20px;
+}
