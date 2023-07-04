@@ -107,12 +107,61 @@ function App() {
 
 export default App;
 
-// sudo apt-get update
-// sudo apt-get install postgresql postgresql-contrib
-// sudo service postgresql start
-// sudo -u postgres psql
-// CREATE DATABASE tests;
-// CREATE USER postgres WITH PASSWORD 'p01f01';
-// GRANT ALL PRIVILEGES ON DATABASE soc_chat TO postgres;
-// sudo su - postgres
-// psql -s tests
+// Клиент
+// git clone https://github.com/artemkuskin/tests-fron.git
+// npm i
+// npm run start
+
+// БД
+//  sudo apt-get update
+//  sudo apt-get install postgresql postgresql-contrib
+//  sudo service postgresql start
+//  sudo -u postgres psql
+//  CREATE DATABASE tests;
+//  CREATE USER postgres WITH PASSWORD 'p01f01';
+
+//  GRANT ALL PRIVILEGES ON DATABASE tests TO postgres;
+
+//  create new terminal
+
+//  sudo su - postgres
+//  psql -s tests
+
+//  create TABLE category(
+//     id SERIAL PRIMARY KEY,
+//     name VARCHAR(255)
+// );
+
+// create TABLE tests (
+//     name VARCHAR(255),
+//     category_id INTEGER,
+//     status BOOLEAN,
+//     verified BOOLEAN,
+//      id SERIAL PRIMARY KEY,
+//     report JSONB DEFAULT '{}'::jsonb,
+//     FOREIGN KEY (category_id) REFERENCES category (id)
+// );
+
+// create TABLE userData(
+//     firstName  VARCHAR(255),
+//     lastName  VARCHAR(255),
+//     id  VARCHAR(255),
+//     id2  VARCHAR(255)
+// );
+
+// create TABLE report(
+//     testName VARCHAR(255),
+//     userName  VARCHAR(255),
+//     startTest  VARCHAR(255),
+//     endTest  VARCHAR(255),
+//     result  VARCHAR(255),
+//     report_id INTEGER,
+//     message TEXT,
+//     FOREIGN KEY (report_id) REFERENCES tests (id)
+// );
+
+// Тесты
+// git clone git@bitbucket.org:sharanproj/auto-test-sharan.git
+// git checkout test
+// npm i
+// npm run start
