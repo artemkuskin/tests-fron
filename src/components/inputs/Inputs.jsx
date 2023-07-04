@@ -68,12 +68,14 @@ export const Inputs = () => {
         ID2
         <input placeholder="User id2" value={id2} onChange={(e) => changeId2Input(e.target.value)} />
       </label>
-      <button className="save-button" onClick={setUserData}>
-        Save
-      </button>
-      <button className="generate-button" onClick={generateId}>
-        Generate Id
-      </button>
+      <div className="container-buttons">
+        <button className="save-button" onClick={setUserData}>
+          Save
+        </button>
+        <button className="generate-button" onClick={generateId}>
+          Generate Id
+        </button>
+      </div>
     </div>
   );
 };

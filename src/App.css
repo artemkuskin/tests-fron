@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin-top: 10px;
 }
 
 .App-logo {
@@ -83,6 +84,7 @@
   background-color: rgb(236, 148, 148);
   border-color: red;
   cursor: pointer;
+  font-style: italic;
 }
 
 .button-main-test {
@@ -92,20 +94,6 @@
 
 .stop-button {
   cursor: pointer;
-}
-
-.generate-button {
-  height: 30px;
-  width: 100px;
-  border-radius: 10px;
-  border-style: solid;
-  background-color: #95d395;
-  border-color: #245c24;
-  cursor: pointer;
-}
-.generate-button:active {
-  opacity: 0.5;
-  transform: scale(0.95);
 }
 
 .refresh:active {
@@ -152,4 +140,25 @@
   border-radius: 50%;
   height: 50px;
   margin: 20px;
+}
+
+.icon {
+  height: 30px;
+  margin-left: -4px;
+  margin-right: 5px;
+}
+
+.icon-wait {
+  height: 25px;
+  margin-right: 5px;
+}
+
+.main-text {
+  font-style: italic;
+  font-size: xx-large;
+}
+
+.buttons-rep {
+  display: flex;
+  align-items: center;
 }

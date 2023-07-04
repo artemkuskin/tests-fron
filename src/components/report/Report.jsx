@@ -14,7 +14,9 @@ const Report = ({ report, status }) => {
   };
   return (
     <div>
-      <button onClick={getReport}>report</button>
+      <button className="report-button" onClick={getReport}>
+        report
+      </button>
       {state ? <Modal report={report} isOpen={state} onClose={getReport} status={status} /> : ""}
     </div>
   );

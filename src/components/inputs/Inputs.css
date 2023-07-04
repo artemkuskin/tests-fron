@@ -7,26 +7,61 @@ input {
 }
 
 .save-button {
-  height: 30px;
+  height: 36px;
   width: 80px;
   border-radius: 10px;
+  margin-inline: 10px;
   border-style: solid;
   background-color: #95d395;
   border-color: #245c24;
   cursor: pointer;
+  font-style: italic;
+  font-size: 15px;
 }
 
 .label-input {
   display: inline-grid;
+  font-style: italic;
 }
 
 .container-inputs {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 }
 
 .save-button:active {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.container-buttons {
+  margin-top: 16px;
+}
+
+.generate-button {
+  height: 36px;
+  width: 100px;
+  border-radius: 10px;
+  border-style: solid;
+  background-color: #95d395;
+  border-color: #245c24;
+  cursor: pointer;
+  font-style: italic;
+  font-size: 15px;
+}
+.generate-button:active {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.report-button {
+  cursor: pointer;
+  font-style: italic;
+}
+
+.report-button:active {
   opacity: 0.5;
   transform: scale(0.95);
 }
