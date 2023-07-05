@@ -4,6 +4,8 @@ import { userData } from "../../store/authSlice";
 import "./Inputs.css";
 import $api from "../../http";
 import { luhnAlgorithm } from "../../utils";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Inputs = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,7 @@ export const Inputs = () => {
   const [lastName, setLastName] = useState("");
   const [id, setId] = useState("");
   const [id2, setId2] = useState("");
+
   const changeFirstNameInput = (name) => {
     setFirstName(name);
   };
@@ -26,8 +29,37 @@ export const Inputs = () => {
   const changeId2Input = (name) => {
     setId2(name);
   };
+
+  const notify = () => {
+    if (firstName && lastName && id && id2) {
+      toast.success("Success saved !", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.error("Error saved !", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+    }
+  };
+
   const setUserData = () => {
-    dispatch(userData({ firstName, lastName, id, id2 }));
+    if (firstName && lastName && id && id2) {
+      notify();
+      dispatch(userData({ firstName, lastName, id, id2 }));
+    } else {
+      notify();
+    }
   };
 
   const generateId = () => {
@@ -50,6 +82,7 @@ export const Inputs = () => {
 
     fetchData();
   }, []);
+
   return (
     <div className="container-inputs">
       <label className="label-input">
@@ -75,6 +108,7 @@ export const Inputs = () => {
         <button className="generate-button" onClick={generateId}>
           Generate Id
         </button>
+        <ToastContainer />
       </div>
     </div>
   );

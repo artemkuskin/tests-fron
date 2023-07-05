@@ -60,8 +60,12 @@
   display: flex;
   width: 400px;
   justify-content: space-between;
-  margin-left: 10px;
+  margin: 1px 7px 8px 11px;
   align-items: center;
+}
+
+.name-tests {
+  text-align: left;
 }
 
 .main-test {
@@ -154,8 +158,10 @@
 }
 
 .main-text {
+  width: 215px;
   font-style: italic;
   font-size: xx-large;
+  text-align: left;
 }
 
 .buttons-rep {

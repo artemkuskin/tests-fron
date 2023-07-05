@@ -8,13 +8,8 @@ import { UserDataService } from "../services/userData-service";
 const initialState = {
   isAuth: false,
   testData: [],
-  status: false,
+  status: "",
   isOpen: false,
-  // load: false,
-  // userFirstName: "",
-  // userLastName: "",
-  // userId: 0,
-  // userId2: 0,
 };
 
 export const runTest = createAsyncThunk("app/login", async ({ testName, name }) => {
@@ -68,16 +63,6 @@ export const userData = createAsyncThunk("app/userData", async ({ firstName, las
   }
 });
 
-// export const getUserData = createAsyncThunk("app/getUserData", async () => {
-//   try {
-//     const response = await UserDataService.getUserData();
-//     console.log(response.data);
-//     return response.data;
-//   } catch (e) {
-//     console.log(e.response?.data?.message);
-//   }
-// });
-
 export const authSlice = createSlice({
   name: "main",
   initialState,
@@ -85,18 +70,6 @@ export const authSlice = createSlice({
     changeIsOpen(state, action) {
       state.isOpen = action.payload;
     },
-  },
-  extraReducers: (builder) => {
-    // builder.addCase(getUserData.fulfilled, (state, action) => {
-    //   state.userFirstName = action.payload.firstname;
-    //   state.userLastName = action.payload.lastname;
-    //   state.userId = action.payload.id;
-    //   state.userId2 = action.payload.id2;
-    //   console.log(state.userId);
-    // });
-    // builder.addCase(getTests.fulfilled, (state, action) => {
-    //   state.testData = action.payload;
-    // });
   },
 });
 
